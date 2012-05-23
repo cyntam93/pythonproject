@@ -1,5 +1,3 @@
-# hello Cynthia
-
 import os
 
 os.listdir(".")
@@ -47,6 +45,29 @@ def rankedVote(p, cs):
         candidateList.append(candidateName)
     return candidateList
 
+def zeroElection(cs): 
+    # JAMES
+    # zeroElection(cs) takes a list of tuples cs that describes the candidates in an election, and it returns a 
+    # dictionary containing one entry for each candidate. Each entry is a tuple of the form (0, [], k, x), where
+    # k is a distinct index from 0 for each candidate, and x is the vote corresponding to the candidate's 
+    # pre-registered voting ticket. 
+    # e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
+    # {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
+    # "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
+	output = {}
+	for counter in range(len(cs)):
+		item = cs[counter]
+		candidateName = item[0]
+		candidateTicket = item[1]
+		vote = rankedVote(candidateTicket, cs)
+		if vote == []:
+                    vote.append(candidateName)
+		output[candidateName] = (0,[],counter,vote)
+	return output
+
+    # In each tuple, the second field holds the current list of votes for that candidate, and the first field 
+    # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
+
 def markedVote(p, cs): 
     #markedVote(p, cs) takes a string p and a list of tuples cs that describes the candidates in an election, and it returns a list of strings holding the interpretation of p as a marked vote.
     # e.g. given cs = [("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]: 
@@ -64,26 +85,22 @@ def markedVote(p, cs):
 
 def writtenVote(p, piles): 
     #writtenVote(p, piles) takes a string p and an election status piles, and it returns a list of strings holding the interpretation of p as a written vote wrt piles. writtenVote(p, piles) returns [] for all p which aren't valid written votes. See formal.html for more examples.
-    
+    for eachKey in piles:
+        if eachKey == p:
+            x = piles[eachKey]
+            y = x[3]
+            return y
+    return []
 
-def zeroElection(cs): 
-    # JAMES
-    # zeroElection(cs) takes a list of tuples cs that describes the candidates in an election, and it returns a 
-    # dictionary containing one entry for each candidate. Each entry is a tuple of the form (0, [], k, x), where
-    # k is a distinct index from 0 for each candidate, and x is the vote corresponding to the candidate's 
-    # pre-registered voting ticket. 
-    # e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
-    # {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
-    # "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
-	output = {}
-	for counter in range(len(cs)):
-		item = cs[counter]
-		candidateName = item[0]
-		candidateTicket = item[1]
-		vote = rankedVote(candidateTicket, cs)
-		output[candidateName] = (0,[],counter,vote)
-	return output
-
-    # In each tuple, the second field holds the current list of votes for that candidate, and the first field 
-    # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
-
+def paperToVote(p, cs, piles):
+    #paperToVote(p, cs, piles) takes a string p, a list of tuples cs that describes the candidates in an election, and a corresponding election status piles, and it returns a list of strings holding the interpretation of p as a vote. paperToVote(p, cs, piles) returns [] for all p which aren't valid votes.
+    x = writtenVote(p, piles)
+    if x != []:
+        return x
+    y = rankedVote(p, cs)
+    if y != []:
+        return y
+    z = markedVote(p, cs)
+    if z != []:
+        return z
+    return []
