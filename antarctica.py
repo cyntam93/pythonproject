@@ -104,3 +104,15 @@ def paperToVote(p, cs, piles):
     if z != []:
         return z
     return []
+
+def loser(piles):
+    # piles not empty:  
+    # loser(piles) takes an election status piles, and it returns 
+    # the name of the candidate who has the least votes.
+    #
+
+    # just double check 
+    if piles == {}: print('uh oh - piles was not empty!')
+
+    # sort the list by vote score and return the last name
+    return sorted(a, key=lambda x: x[0], reverse=True)[0]
