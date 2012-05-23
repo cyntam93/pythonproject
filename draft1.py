@@ -60,6 +60,28 @@ def markedVote(p, cs):
         candidateList.append(candidateName)
     return candidateList
 
-6.def writtenVote(p, piles): 
+def writtenVote(p, piles): 
     #writtenVote(p, piles) takes a string p and an election status piles, and it returns a list of strings holding the interpretation of p as a written vote wrt piles. writtenVote(p, piles) returns [] for all p which aren't valid written votes. See formal.html for more examples.
     
+
+def zeroElection(cs): 
+# JAMES
+# zeroElection(cs) takes a list of tuples cs that describes the candidates in an election, and it returns a 
+# dictionary containing one entry for each candidate. Each entry is a tuple of the form (0, [], k, x), where
+# k is a distinct index from 0 for each candidate, and x is the vote corresponding to the candidate's 
+# pre-registered voting ticket. 
+# e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
+# {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
+# "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
+	output = {}
+	for counter in range(len(cs)):
+		item = cs[i]
+		candidateName = item[0]
+		candidateTicket = item[1]
+		vote = rankedVote(candidateTicket, cs)
+		output[candidateName] = (0,[],counter,vote)
+	return output
+
+# In each tuple, the second field holds the current list of votes for that candidate, and the first field 
+# always holds the length of that list. We shall refer to a dictionary of this form as an election status.
+
