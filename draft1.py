@@ -6,8 +6,10 @@ os.listdir(".")
 
 def lines(f): 
     #lines(f) takes the name of a file, and it returns a list of strings, each holding one line from the file. lines(f) returns [] if f doesn't exist.
-    x = open(f, "r")
     y = []
+    if not os.path.exists(f):
+        return y
+    x = open(f, "r")
     for line in x:
         line = line.strip()
         y.append(line)
@@ -65,23 +67,23 @@ def writtenVote(p, piles):
     
 
 def zeroElection(cs): 
-# JAMES
-# zeroElection(cs) takes a list of tuples cs that describes the candidates in an election, and it returns a 
-# dictionary containing one entry for each candidate. Each entry is a tuple of the form (0, [], k, x), where
-# k is a distinct index from 0 for each candidate, and x is the vote corresponding to the candidate's 
-# pre-registered voting ticket. 
-# e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
-# {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
-# "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
+    # JAMES
+    # zeroElection(cs) takes a list of tuples cs that describes the candidates in an election, and it returns a 
+    # dictionary containing one entry for each candidate. Each entry is a tuple of the form (0, [], k, x), where
+    # k is a distinct index from 0 for each candidate, and x is the vote corresponding to the candidate's 
+    # pre-registered voting ticket. 
+    # e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
+    # {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
+    # "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
 	output = {}
 	for counter in range(len(cs)):
-		item = cs[i]
+		item = cs[counter]
 		candidateName = item[0]
 		candidateTicket = item[1]
 		vote = rankedVote(candidateTicket, cs)
 		output[candidateName] = (0,[],counter,vote)
 	return output
 
-# In each tuple, the second field holds the current list of votes for that candidate, and the first field 
-# always holds the length of that list. We shall refer to a dictionary of this form as an election status.
+    # In each tuple, the second field holds the current list of votes for that candidate, and the first field 
+    # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
 
