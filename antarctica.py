@@ -3,7 +3,8 @@ import os
 os.listdir(".")
 
 def lines(f): 
-    #lines(f) takes the name of a file, and it returns a list of strings, each holding one line from the file. lines(f) returns [] if f doesn't exist.
+    # lines(f) takes the name of a file, and it returns a list of strings, each holding one line from the file. 
+    # lines(f) returns [] if f doesn't exist.
     y = []
     if not os.path.exists(f):
         return y
@@ -14,9 +15,13 @@ def lines(f):
     return y
 
 def candidates(f): 
-    """candidates(f) takes the name of a file describing the candidates in an election, and it returns a list of tuples, each containing the name of a candidate and their pre-registered voting ticket (or an empty string if there is no ticket). 
-    e.g. given file.txt, candidates("file.txt") returns [("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]. 
-    You may assume that the format of the file is always correct, and you should disregard any blank lines in the file."""
+    # candidates(f) takes the name of a file describing the candidates in an election, and it returns a list of 
+    # tuples, each containing the name of a candidate and their pre-registered voting ticket (or an empty string
+    # if there is no ticket). 
+    # e.g. given file.txt, candidates("file.txt") returns [("AB", "132"), ("C D", ""), ("EFG", ""), 
+    # ("HJ K", "2 1")]. 
+    # You may assume that the format of the file is always correct, and you should disregard any blank lines in 
+    # the file.
     candidateList = lines(f)
     newCandidateList = []
     for candidate in candidateList:
@@ -29,7 +34,8 @@ def candidates(f):
     return newCandidateList
 
 def rankedVote(p, cs): 
-    #rankedVote(p, cs) takes a string p and a list of tuples cs that describes the candidates in an election, and it returns a list of strings holding the interpretation of p as a ranked vote.
+    #rankedVote(p, cs) takes a string p and a list of tuples cs that describes the candidates in an election, 
+    # and it returns a list of strings holding the interpretation of p as a ranked vote.
     # e.g. given cs = [("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]: 
     #rankedVote("21 3", cs) returns ["C D", "AB", "HJ K"], 
     #rankedVote("2 12", cs) returns ["EFG"], and 
@@ -85,7 +91,9 @@ def markedVote(p, cs):
     return candidateList
 
 def writtenVote(p, piles): 
-    #writtenVote(p, piles) takes a string p and an election status piles, and it returns a list of strings holding the interpretation of p as a written vote wrt piles. writtenVote(p, piles) returns [] for all p which aren't valid written votes. See formal.html for more examples.
+    #writtenVote(p, piles) takes a string p and an election status piles, and it returns a list of strings
+    # holding the interpretation of p as a written vote wrt piles. writtenVote(p, piles) returns [] for all p 
+    # which aren't valid written votes. See formal.html for more examples.
     for eachKey in piles:
         if eachKey == p:
             x = piles[eachKey]
@@ -94,7 +102,9 @@ def writtenVote(p, piles):
     return []
 
 def paperToVote(p, cs, piles):
-    #paperToVote(p, cs, piles) takes a string p, a list of tuples cs that describes the candidates in an election, and a corresponding election status piles, and it returns a list of strings holding the interpretation of p as a vote. paperToVote(p, cs, piles) returns [] for all p which aren't valid votes.
+    #paperToVote(p, cs, piles) takes a string p, a list of tuples cs that describes the candidates in an 
+    # election, and a corresponding election status piles, and it returns a list of strings holding the
+    # interpretation of p as a vote. paperToVote(p, cs, piles) returns [] for all p which aren't valid votes.
     x = writtenVote(p, piles)
     if x != []:
         return x
@@ -126,7 +136,7 @@ def distributeVotes(vs, piles):
     # should be deleted. 
     # e.g. if ["A", "B", "C", "D"] is distributed to C (presumably because "A" and "B" have already been 
     # eliminated from the election), then the vote added to C's pile should be just ["D"].
-    # piles is a list -  
+    # piles is a list - 
     
 
 
