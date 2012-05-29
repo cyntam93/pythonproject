@@ -170,3 +170,9 @@ def displayStandings(piles, ...)
     # include. If you want to pass other arguments to displayStandings, that's fine: it will not be called 
     # directly by the testing or marking programs.
     code here
+
+def main(): 
+    # main() prompts the user for the names of a file of candidates' information and a file of completed 
+    # ballot papers, and it conducts an Antarctican election and displays the results on the screen.
+
+
