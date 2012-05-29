@@ -60,7 +60,7 @@ def zeroElection(cs):
     # e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
     # {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
     # "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
-	output = {}
+	piles = {}
 	for counter in range(len(cs)):
 		item = cs[counter]
 		candidateName = item[0]
@@ -68,8 +68,8 @@ def zeroElection(cs):
 		vote = rankedVote(candidateTicket, cs)
 		if vote == []:
                     vote.append(candidateName)
-		output[candidateName] = (0,[],counter,vote)
-	return output
+		piles[candidateName] = (0,[],counter,vote)
+	return piles
 
     # In each tuple, the second field holds the current list of votes for that candidate, and the first field 
     # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
@@ -120,7 +120,6 @@ def loser(piles):
     # piles not empty:  
     # loser(piles) takes an election status piles, and it returns 
     # the name of the candidate who has the least votes.
-    #
 
     # just double check 
     if piles == {}: print('uh oh - piles was not empty!')
