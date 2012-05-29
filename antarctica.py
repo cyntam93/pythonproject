@@ -159,3 +159,7 @@ def nextRound(piles)
     # the number of c's votes that expired. 
     # The re-distributed votes should be cut back as described under distributeVotes.
 
+    del piles[loser(piles)]
+    # redistribute votes here
+    return piles
+    
