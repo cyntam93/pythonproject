@@ -127,15 +127,31 @@ def loser(piles):
     # sort the list by vote score and return the last name
     return sorted(a, key=lambda x: x[0], reverse=True)[0]
 
+def leader(piles), piles not empty: 
+    # leader(piles) takes an election status piles, and it returns the name of the top candidate 
+
+    # just double check 
+    if piles == {}: print('uh oh - piles was not empty!')
+
+    # sort the list by vote score and return the last name
+    return sorted(a, key=lambda x: x[0], reverse=False)[0]
+
 def distributeVotes(vs, piles): 
     # distributeVotes(vs, piles) takes a list of votes vs and an election status piles, and it returns a 
     # tuple containing the new piles where each vote in vs has been distributed to its highest-ranked 
     # surviving candidate, and the number of empty votes from vs. 
+
     # Note that if a vote v is distributed to a candidate c, then all entries on v up to and including c
     # should be deleted. 
     # e.g. if ["A", "B", "C", "D"] is distributed to C (presumably because "A" and "B" have already been 
     # eliminated from the election), then the vote added to C's pile should be just ["D"].
-    # piles is a list - 
+
+    # piles is a list ie - {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), 
+    # "EFG": (0, [], 2, ["EFG"]), "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
+    # 
     
+    """i'm confused, i'll come back to this one soon"""
+
+
 
 
