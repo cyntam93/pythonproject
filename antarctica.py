@@ -69,7 +69,8 @@ def zeroElection(cs):
     # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
 
 def markedVote(p, cs): 
-    #markedVote(p, cs) takes a string p and a list of tuples cs that describes the candidates in an election, and it returns a list of strings holding the interpretation of p as a marked vote.
+    #markedVote(p, cs) takes a string p and a list of tuples cs that describes the candidates in an election, 
+    # and it returns a list of strings holding the interpretation of p as a marked vote.
     # e.g. given cs = [("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]: 
     #markedVote(" x", cs) returns ["C D"], 
     #markedVote("2 ", cs) returns ["AB"], and 
@@ -118,11 +119,14 @@ def loser(piles):
     return sorted(a, key=lambda x: x[0], reverse=True)[0]
 
 def distributeVotes(vs, piles): 
-	# distributeVotes(vs, piles) takes a list of votes vs and an election status piles, and it returns a 
-	# tuple containing the new piles where each vote in vs has been distributed to its highest-ranked 
-	# surviving candidate, and the number of empty votes from vs. 
-	# Note that if a vote v is distributed to a candidate c, then all entries on v up to and including c
-	# should be deleted. 
-	# e.g. if ["A", "B", "C", "D"] is distributed to C (presumably because "A" and "B" have already been 
-	# eliminated from the election), then the vote added to C's pile should be just ["D"].
-	
+    # distributeVotes(vs, piles) takes a list of votes vs and an election status piles, and it returns a 
+    # tuple containing the new piles where each vote in vs has been distributed to its highest-ranked 
+    # surviving candidate, and the number of empty votes from vs. 
+    # Note that if a vote v is distributed to a candidate c, then all entries on v up to and including c
+    # should be deleted. 
+    # e.g. if ["A", "B", "C", "D"] is distributed to C (presumably because "A" and "B" have already been 
+    # eliminated from the election), then the vote added to C's pile should be just ["D"].
+    # piles is a list -  
+    
+
+
