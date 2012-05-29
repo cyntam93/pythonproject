@@ -116,3 +116,13 @@ def loser(piles):
 
     # sort the list by vote score and return the last name
     return sorted(a, key=lambda x: x[0], reverse=True)[0]
+
+def distributeVotes(vs, piles): 
+	# distributeVotes(vs, piles) takes a list of votes vs and an election status piles, and it returns a 
+	# tuple containing the new piles where each vote in vs has been distributed to its highest-ranked 
+	# surviving candidate, and the number of empty votes from vs. 
+	# Note that if a vote v is distributed to a candidate c, then all entries on v up to and including c
+	# should be deleted. 
+	# e.g. if ["A", "B", "C", "D"] is distributed to C (presumably because "A" and "B" have already been 
+	# eliminated from the election), then the vote added to C's pile should be just ["D"].
+	
