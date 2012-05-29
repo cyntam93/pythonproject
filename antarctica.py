@@ -152,6 +152,10 @@ def distributeVotes(vs, piles):
     
     """i'm confused, i'll come back to this one soon"""
 
-
-
+def nextRound(piles)
+    # piles not empty: 
+    # nextRound(piles) takes an election status piles, it identifies the trailing candidate c, and it 
+    # returns a tuple containing piles after c has been removed and c's votes have been re-distributed, and
+    # the number of c's votes that expired. 
+    # The re-distributed votes should be cut back as described under distributeVotes.
 
