@@ -162,4 +162,11 @@ def nextRound(piles)
     del piles[loser(piles)]
     # redistribute votes here
     return piles
-    
+
+def displayStandings(piles, ...)
+    # assume piles not empty 
+    # displayStandings(piles, ...) takes an election status piles, and it uses turtle graphics to display the 
+    # current standings on the screen. results.txt lists the kind of information that your display should 
+    # include. If you want to pass other arguments to displayStandings, that's fine: it will not be called 
+    # directly by the testing or marking programs.
+    code here
