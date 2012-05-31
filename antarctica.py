@@ -116,25 +116,6 @@ def paperToVote(p, cs, piles):
         return z
     return []
 
-def loser(piles):
-    # piles not empty:  
-    # loser(piles) takes an election status piles, and it returns 
-    # the name of the candidate who has the least votes.
-
-    # just double check 
-    if piles == {}: print('uh oh - piles was not empty!')
-
-    # sort the list by vote score and return the last name
-    return sorted(a, key=lambda x: x[0], reverse=True)[0]
-
-def leader(piles), piles not empty: 
-    # leader(piles) takes an election status piles, and it returns the name of the top candidate 
-
-    # just double check 
-    if piles == {}: print('uh oh - piles was not empty!')
-
-    # sort the list by vote score and return the last name
-    return sorted(a, key=lambda x: x[0], reverse=False)[0]
 
 def distributeVotes(vs, piles): 
     # distributeVotes(vs, piles) takes a list of votes vs and an election status piles, and it returns a 
@@ -152,6 +133,29 @@ def distributeVotes(vs, piles):
     
     """i'm confused, i'll come back to this one soon"""
 
+def leader(piles)
+    # piles not empty: 
+    # leader(piles) takes an election status piles, and it returns the name of the top candidate 
+
+    # just double check 
+    if piles == {}: print('uh oh - piles was not empty!')
+
+    # sort the list by vote score and return the last name
+    return sorted(a, key=lambda x: x[0], reverse=False)[0]
+
+
+def loser(piles):
+    # piles not empty:  
+    # loser(piles) takes an election status piles, and it returns 
+    # the name of the candidate who has the least votes.
+
+    # just double check 
+    if piles == {}: print('uh oh - piles was not empty!')
+
+    # sort the list by vote score and return the last name
+    return sorted(a, key=lambda x: x[0], reverse=True)[0]
+
+
 def nextRound(piles)
     # piles not empty: 
     # nextRound(piles) takes an election status piles, it identifies the trailing candidate c, and it 
@@ -160,7 +164,9 @@ def nextRound(piles)
     # The re-distributed votes should be cut back as described under distributeVotes.
 
     del piles[loser(piles)]
+
     # redistribute votes here
+
     return piles
 
 def displayStandings(piles, ...)
