@@ -168,10 +168,16 @@ def nextRound(piles)
     # the number of c's votes that expired. 
     # The re-distributed votes should be cut back as described under distributeVotes.
 
+    # get the votes from the losing candidate's tuple in piles
+    vs = piles[loser(piles)][1]
+
+    # redistribute the votes to the remaining candidates
+    distributeVotes(vs, piles)
+
+    # delete the losing candidate
     del piles[loser(piles)]
 
-    # redistribute votes here
-
+    # and now return
     return piles
 
 def displayStandings(piles, ...)
