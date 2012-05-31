@@ -138,7 +138,7 @@ def distributeVotes(vs, piles):
     
     
 
-def leader(piles)
+def leader(piles):
     # piles not empty: 
     # leader(piles) takes an election status piles, and it returns the name of the top candidate 
 
@@ -161,7 +161,7 @@ def loser(piles):
     return sorted(a, key=lambda x: x[0], reverse=True)[0]
 
 
-def nextRound(piles)
+def nextRound(piles):
     # piles not empty: 
     # nextRound(piles) takes an election status piles, it identifies the trailing candidate c, and it 
     # returns a tuple containing piles after c has been removed and c's votes have been re-distributed, and
@@ -171,29 +171,34 @@ def nextRound(piles)
     # get the votes from the losing candidate's tuple in piles
     vs = piles[loser(piles)][1]
 
+    # check if the vote has expired
+    for vote in vs:
+        if vote == 
+
+
     # redistribute the votes to the remaining candidates
-    distributeVotes(vs, piles)
+    piles = distributeVotes(vs, piles)
 
     # delete the losing candidate
     del piles[loser(piles)]
 
     # and now return
-    return piles
+    return (piles, vs, )
 
-def displayStandings(piles, ...)
+def displayStandings(piles):
     # assume piles not empty 
     # displayStandings(piles, ...) takes an election status piles, and it uses turtle graphics to display the 
     # current standings on the screen. results.txt lists the kind of information that your display should 
     # include. If you want to pass other arguments to displayStandings, that's fine: it will not be called 
     # directly by the testing or marking programs.
-    code here
+    # code here
 
 def main(): 
     # main() prompts the user for the names of a file of candidates' information and a file of completed 
     # ballot papers, and it conducts an Antarctican election and displays the results on the screen.
 
     # load candidates, returns list of strings
-    candidates = lines("candidates.txt")
+    candidatesList = lines("candidates.txt")
 
     # sort candidates
     cs = candidates("candidates.txt")
@@ -212,14 +217,12 @@ def main():
             vs.append(result)
 
     # set winning line
-    # where v is the number of formal votes
     winningLine = len(vs) // 2 + 1
 
     # get piles
     piles = zeroElection(cs)
 
-    # distribute votes
-    newPiles = distributeVotes(vs, piles)
+    # pass into nextRound function
+    piles = nextRound(piles)
 
     # remove loser and expired votes
-    
