@@ -130,8 +130,13 @@ def distributeVotes(vs, piles):
     # piles is a list ie - {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), 
     # "EFG": (0, [], 2, ["EFG"]), "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
     # 
+    # determine if the votes are marked, written or ranked
+    # loop that goes through each vote (for each vote in vs, add it to the candidate's list and increase
+    # count. also keep a counter for number of empty votes)
+    for vote in vs:
+        paperToVote(p, cs, piles)
     
-    """i'm confused, i'll come back to this one soon"""
+    
 
 def leader(piles)
     # piles not empty: 
@@ -152,7 +157,7 @@ def loser(piles):
     # just double check 
     if piles == {}: print('uh oh - piles was not empty!')
 
-    # sort the list by vote score and return the last name
+    # sort the list by vote score and return the first name
     return sorted(a, key=lambda x: x[0], reverse=True)[0]
 
 
@@ -181,4 +186,19 @@ def main():
     # main() prompts the user for the names of a file of candidates' information and a file of completed 
     # ballot papers, and it conducts an Antarctican election and displays the results on the screen.
 
- 
+    # load candidates, returns list of strings
+    candidates = lines("candidates.txt")
+
+    # sort candidates
+    cs = candidates("candidates.txt")
+
+    #load ballot papers
+    papers = lines("papers.txt")
+
+    # parse vote papers
+    for paper in papers:
+        paperToVote(paper, cs, piles)
+
+    # set winning line
+    # where v is the number of formal votes
+    winningLine = v // 2 + 1
