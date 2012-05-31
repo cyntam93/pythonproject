@@ -202,9 +202,24 @@ def main():
     papers = lines("papers.txt")
 
     # parse vote papers
+    vs = []
+    informalVotes = 0
     for paper in papers:
-        paperToVote(paper, cs, piles)
+        result = paperToVote(paper, cs, piles)
+        if result == []:
+            informalVotes += 1
+        else:
+            vs.append(result)
 
     # set winning line
     # where v is the number of formal votes
-    winningLine = v // 2 + 1
+    winningLine = len(vs) // 2 + 1
+
+    # get piles
+    piles = zeroElection(cs)
+
+    # distribute votes
+    newPiles = distributeVotes(vs, piles)
+
+    # remove loser and expired votes
+    
