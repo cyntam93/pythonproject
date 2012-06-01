@@ -1,3 +1,6 @@
+# James Davidson & Cynthia Tam
+# 20948248 & 20939321
+
 import os
 
 os.listdir(".")
