@@ -213,10 +213,10 @@ def main():
     # ballot papers, and it conducts an Antarctican election and displays the results on the screen.
 
     # sort candidates
-    cs = candidates("candidates.txt")
+    cs = candidates(str(input("Enter the candidates' info text filename please: ")))
 
     #load ballot papers
-    papers = lines("papers.txt")
+    papers = lines(str(input("Enter the ballot papers text filename please: ")))
 
     # parse vote papers
     vs = []
@@ -235,13 +235,8 @@ def main():
     piles = zeroElection(cs)
 
     # pass into nextRound function
-    piles = nextRound(piles)
+    while !winner:
+        piles = nextRound(piles)
+        displayStandings(piles)
+    print('The winner is...   ' + str(winner))
 
-    # remove loser and expired votes
-    loser = loser(piles)
-
-    # check leader
-    leader = leader(piles)
-
-    # re-distribute the votes
-    distributeVotes()
