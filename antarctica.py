@@ -180,19 +180,14 @@ def nextRound(piles):
     # get the votes from the losing candidate's tuple in piles
     vs = piles[loser(piles)][1]
 
-    # check if the vote has expired
-    for vote in vs:
-        if vote == 
-
-
-    # redistribute the votes to the remaining candidates
-    piles = distributeVotes(vs, piles)
-
     # delete the losing candidate
     del piles[loser(piles)]
 
-    # and now return
-    return (piles, vs, )
+    # redistribute the votes minus the losing candidate
+    piles = distributeVotes(vs, piles)
+    
+    # return
+    return piles
 
 def displayStandings(piles):
     # assume piles not empty 
