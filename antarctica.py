@@ -184,10 +184,10 @@ def nextRound(piles):
     del piles[loser(piles)]
 
     # redistribute the votes minus the losing candidate
-    piles = distributeVotes(vs, piles)
+    (piles, emptyVotes) = distributeVotes(vs, piles)
     
     # return
-    return piles
+    return (piles, emptyVotes)
 
 def displayStandings(piles):
     # assume piles not empty 
