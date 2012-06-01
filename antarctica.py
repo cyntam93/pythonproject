@@ -134,16 +134,16 @@ def distributeVotes(vs, piles):
     # loop that goes through each vote (for each vote in vs, add it to the candidate's list and increase
     # count. also keep a counter for number of empty votes)
     emptyVotes = 0
-    found = false
+    found = False
     for vote in vs:
         for i in range(len(vote)):
             candidate = vote[i]
             if candidate in piles:
-                found = true
+                found = True
                 piles[candidate][1].append(vote[i:])
                 piles[candidate][0] += 1
                 break
-        if found == false:
+        if found == False:
             emptyVotes += 1
     return (piles, emptyVotes)
 
@@ -235,9 +235,11 @@ def main():
     # variable typing/defn
     winningLine = len(vs) // 2 + 1        # ie an integer
     winner = ""                                # ie a string
+
+    (piles, emptyVotes) = distributeVotes(vs, piles)
     
     # PARAGRAPH
-    while piles[leader(piles)][0] < winningLine:
+    while piles[leader(piles)][0] > winningLine:
         # output some status info
         displayStandings(piles, winningLine)
 
