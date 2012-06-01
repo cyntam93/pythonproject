@@ -155,7 +155,7 @@ def leader(piles):
     if piles == {}: print('uh oh - piles was not empty!')
 
     # sort the list by vote score and return the last name
-    return sorted(a, key=lambda x: x[0], reverse=False)[0]
+    return sorted(piles, key=lambda x: x[0], reverse=False)[0]
 
 
 def loser(piles):
@@ -167,7 +167,7 @@ def loser(piles):
     if piles == {}: print('uh oh - piles was not empty!')
 
     # sort the list by vote score and return the first name
-    return sorted(a, key=lambda x: x[0], reverse=True)[0]
+    return sorted(piles, key=lambda x: x[0], reverse=True)[0]
 
 
 def nextRound(piles):
@@ -201,6 +201,17 @@ def displayStandings(piles):
     # include. If you want to pass other arguments to displayStandings, that's fine: it will not be called 
     # directly by the testing or marking programs.
     # code here
+    print( str(len(papers)) + ' ballot papers were cast')
+    print( 'However, some ' + str(len(informal)) + ' were invalid.')
+
+    print( '----------------------')
+    for key in piles:
+	print( key + ': ' + str(piles[key][0]) + ' votes')
+    print( 'The winning line is at ' + str(winningLine) + '.')
+    print( str(leader(piles)) ' has x votes...')
+    print( '----------------------')
+
+    print(str(winner(piles) + ' has won the election!')
 
 def main(): 
     # main() prompts the user for the names of a file of candidates' information and a file of completed 
