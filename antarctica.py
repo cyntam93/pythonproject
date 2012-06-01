@@ -60,16 +60,16 @@ def zeroElection(cs):
     # e.g. zeroElection([("AB", "132"), ("C D", ""), ("EFG", ""), ("HJ K", "2 1")]) returns the dictionary 
     # {"AB": (0, [], 0, ["AB", "EFG", "C D"]), "C D": (0, [], 1, ["C D"]), "EFG": (0, [], 2, ["EFG"]), 
     # "HJ K": (0, [], 3, ["HJ K", "AB"])}. 
-	piles = {}
-	for counter in range(len(cs)):
-		item = cs[counter]
-		candidateName = item[0]
-		candidateTicket = item[1]
-		vote = rankedVote(candidateTicket, cs)
-		if vote == []:
+        piles = {}
+        for counter in range(len(cs)):
+                item = cs[counter]
+                candidateName = item[0]
+                candidateTicket = item[1]
+                vote = rankedVote(candidateTicket, cs)
+                if vote == []:
                     vote.append(candidateName)
-		piles[candidateName] = (0,[],counter,vote)
-	return piles
+                piles[candidateName] = (0,[],counter,vote)
+        return piles
 
     # In each tuple, the second field holds the current list of votes for that candidate, and the first field 
     # always holds the length of that list. We shall refer to a dictionary of this form as an election status.
@@ -189,24 +189,18 @@ def nextRound(piles):
     # return
     return (piles, emptyVotes)
 
-def displayStandings(piles):
+def displayStandings(piles, winningLine):
     # assume piles not empty 
     # displayStandings(piles, ...) takes an election status piles, and it uses turtle graphics to display the 
     # current standings on the screen. results.txt lists the kind of information that your display should 
     # include. If you want to pass other arguments to displayStandings, that's fine: it will not be called 
     # directly by the testing or marking programs.
-    # code here
-    print( str(len(papers)) + ' ballot papers were cast')
-    print( 'However, some ' + str(len(informal)) + ' were invalid.')
-
-    print( '----------------------')
+    print('----------------------')
     for key in piles:
-        print( key + ': ' + str(piles[key][0]) + ' votes')
-    print( 'The winning line is at ' + str(winningLine) + '.')
-    print( str(leader(piles)) + ' has x votes...')
-    print( '----------------------')
-
-    print(str(winner(piles) + ' has won the election!')
+        print(key + ': ' + str(piles[key][0]) + ' votes')
+    print('The winning line is at ' + str(winningLine) + '.')
+    print(str(leader(piles)) + ' has x votes...')
+    print(str(winner(piles)) + ' has won the election!')
 
 def main(): 
     # main() prompts the user for the names of a file of candidates' information and a file of completed 
@@ -233,29 +227,27 @@ def main():
 
     # get piles
     piles = zeroElection(cs)
-    
+
+    # INTRODUCTION
+    print(str(len(papers)) + ' ballot papers were cast.')
+    print('However, some ' + str(informalVotes) + ' were invalid.')
+
     # variable typing/defn
-    winningLine = 0	# ie an integer
-    winner = ""		# ie a string
+    winningLine = len(vs) // 2 + 1        # ie an integer
+    winner = ""                                # ie a string
     
-    winningLine = len(vs) // 2 + 1
-    # who is the leader, are they the winner?
+    # PARAGRAPH
     while piles[leader(piles)][0] < winningLine:
-	# calculate winning line
-	winningLine = len(vs) // 2 + 1
+        # output some status info
+        displayStandings(piles, winningLine)
 
-	# output some status info
-	displayStandings(piles)
+        # if no clear winner, then run nextRound
+        piles = nextRound(piles)
 
-	# if no clear winner, then run nextRound
-	piles = nextRound(piles)
-	
-	# now, go back and recalculate the winning line and check if we have a winner
-   break:
-	print('The winner is...   ' + str(winner))
+        # calculate winning line
+        winningLine = len(vs) // 2 + 1
+    # CONCLUSION
+    print('The winner is...   ' + str(winner))
 
 
-
-
-
-
+main()
