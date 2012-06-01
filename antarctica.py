@@ -201,9 +201,9 @@ def displayStandings(piles):
 
     print( '----------------------')
     for key in piles:
-	print( key + ': ' + str(piles[key][0]) + ' votes')
+        print( key + ': ' + str(piles[key][0]) + ' votes')
     print( 'The winning line is at ' + str(winningLine) + '.')
-    print( str(leader(piles)) ' has x votes...')
+    print( str(leader(piles)) + ' has x votes...')
     print( '----------------------')
 
     print(str(winner(piles) + ' has won the election!')
@@ -235,7 +235,7 @@ def main():
     piles = zeroElection(cs)
 
     # pass into nextRound function
-    while !winner:
+    while not winner:
         piles = nextRound(piles)
         displayStandings(piles)
     print('The winner is...   ' + str(winner))
