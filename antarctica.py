@@ -133,10 +133,19 @@ def distributeVotes(vs, piles):
     # determine if the votes are marked, written or ranked
     # loop that goes through each vote (for each vote in vs, add it to the candidate's list and increase
     # count. also keep a counter for number of empty votes)
+    emptyVotes = 0
+    found = false
     for vote in vs:
-        paperToVote(p, cs, piles)
-    
-    
+        for i in range(len(vote)):
+            candidate = vote[i]
+            if candidate in piles:
+                found = true
+                piles[candidate][1].append(vote[i:])
+                piles[candidate][0] += 1
+                break
+        if found == false:
+            emptyVotes += 1
+    return (piles, emptyVotes)
 
 def leader(piles):
     # piles not empty: 
@@ -197,9 +206,6 @@ def main():
     # main() prompts the user for the names of a file of candidates' information and a file of completed 
     # ballot papers, and it conducts an Antarctican election and displays the results on the screen.
 
-    # load candidates, returns list of strings
-    candidatesList = lines("candidates.txt")
-
     # sort candidates
     cs = candidates("candidates.txt")
 
@@ -226,3 +232,10 @@ def main():
     piles = nextRound(piles)
 
     # remove loser and expired votes
+    loser = loser(piles)
+
+    # check leader
+    leader = leader(piles)
+
+    # re-distribute the votes
+    distributeVotes()
