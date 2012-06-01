@@ -218,6 +218,9 @@ def main():
     #load ballot papers
     papers = lines(str(input("Enter the ballot papers text filename please: ")))
 
+    piles = {}
+    piles = zeroElection(cs)
+
     # parse vote papers
     vs = []
     informalVotes = 0
@@ -228,15 +231,31 @@ def main():
         else:
             vs.append(result)
 
-    # set winning line
-    winningLine = len(vs) // 2 + 1
-
     # get piles
     piles = zeroElection(cs)
+    
+    # variable typing/defn
+    winningLine = 0	# ie an integer
+    winner = ""		# ie a string
+    
+    winningLine = len(vs) // 2 + 1
+    # who is the leader, are they the winner?
+    while piles[leader(piles)][0] < winningLine:
+	# calculate winning line
+	winningLine = len(vs) // 2 + 1
 
-    # pass into nextRound function
-    while not winner:
-        piles = nextRound(piles)
-        displayStandings(piles)
-    print('The winner is...   ' + str(winner))
+	# output some status info
+	displayStandings(piles)
+
+	# if no clear winner, then run nextRound
+	piles = nextRound(piles)
+	
+	# now, go back and recalculate the winning line and check if we have a winner
+   break:
+	print('The winner is...   ' + str(winner))
+
+
+
+
+
 
