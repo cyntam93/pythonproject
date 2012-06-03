@@ -4,7 +4,6 @@
 # Basically an Antarctican Election using optional preferential voting
 # rewritten for Lyndon While in a way that makes... well.. sense?
 
-
 """
 FAT DEFN FOR SOME SEMANTIC SCOPE
 	Basically, the whole program is about distributing votes to piles,
@@ -20,29 +19,40 @@ FAT DEFN FOR SOME SEMANTIC SCOPE
 	The process of rounds is continued until one candidate eventually
 	passes the winning line.
 """
-class Election(object):
+
+class OPV(object):
 
 	def __init__(self):
 		# variable typing
-		self._votes = []
-		self._piles = []
+		self.Votes = []
+		self.Piles = []
+		self.Candidates = []
+		self.Papers = []
+
+	class CandidateList(self
 
 	class Vote(object):		# definition for a Vote object
 
 		def __init__(self, raw):
 			# parse the raw input
-			self._raw = raw
+			self.raw = raw
 			for letter in raw:
 				if(letter != alphabetical): return 'ok'
 
-	class Pile(object):		# definition for a Pile object
+
+	class Pile(list):
 		def __init__(self, candidate):
+			# some stuff here
+		def sort(self):
+			return self.sorted(yadyayda)
+
+	class Candidate(object):		# definition for a Pile object
+		def __init__(self, raw):
 			# variable typing
-			self._candidate = candidate
-			self._raw = raw
+			self.raw = raw
 			# parse raw into variables
-			self._name = raw.split(':')[0]
-			self._ticket = Vote(raw.split(':')[1])
+			self.name = raw.split(':')[0]
+			self.ticket = Vote(raw.split(':')[1])
 
 	def loadCandidates(self, f):	# get the information from file and pass it to the Pile constructor
 		for rawLine in lines(f):
@@ -59,7 +69,21 @@ class Election(object):
 MAIN PROGRAM
 """
 
-Election.loadCandidates('candidates.txt')
-Election.loadPapers('papers.txt')
+Election = OPV()		# instantiate an election of the Optional Preferential Voting class
+
+Election.loadCandidates('candidates.txt')	# get some input from file
+Election.loadPapers('papers.txt')		# get some more input
+
+print('Election candidates: ' + str(Election.Candidates))
+print('Ballot papers cast: ' + str(Election.Papers.count))	# update the audience
+print('Valid votes: ' + str(Election.Votes.count))		# more updates
+
+while Election.winner == '':		# ie counting in progress
+	Election.distributeVotes()	# sort the votes into piles
+	print(str(Election.status))	# ie displayStandings
+
+print('The winner is... ' + str(Election.winner))
+
+
 
 
